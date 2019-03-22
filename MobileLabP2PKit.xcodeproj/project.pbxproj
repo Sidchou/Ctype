@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E04DFFE22455B9F00190130 /* inputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04DFFD22455B9F00190130 /* inputViewController.swift */; };
+		3E04E00022455D8400190130 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04DFFF22455D8400190130 /* NumberPad.swift */; };
+		3E04E00222455DCA00190130 /* PadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04E00122455DCA00190130 /* PadButton.swift */; };
 		6A0EA8B8223172BB00F89CEB /* MultipeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0EA8B7223172BB00F89CEB /* MultipeerService.swift */; };
 		6AEE4A9F2231688E002C9427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE4A9E2231688E002C9427 /* AppDelegate.swift */; };
 		6AEE4AA12231688E002C9427 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE4AA02231688E002C9427 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E04DFFD22455B9F00190130 /* inputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputViewController.swift; sourceTree = "<group>"; };
+		3E04DFFF22455D8400190130 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		3E04E00122455DCA00190130 /* PadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadButton.swift; sourceTree = "<group>"; };
 		6A0EA8B7223172BB00F89CEB /* MultipeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerService.swift; sourceTree = "<group>"; };
 		6AEE4A9B2231688E002C9427 /* MobileLabP2PKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileLabP2PKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEE4A9E2231688E002C9427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +73,10 @@
 		6AEE4AB0223168E1002C9427 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3E04DFFF22455D8400190130 /* NumberPad.swift */,
+				3E04E00122455DCA00190130 /* PadButton.swift */,
 				6AEE4AB4223168E1002C9427 /* Main.storyboard */,
+				3E04DFFD22455B9F00190130 /* inputViewController.swift */,
 				6AEE4AB2223168E1002C9427 /* LaunchScreen.storyboard */,
 				6AEE4AB1223168E1002C9427 /* Assets.xcassets */,
 				6AEE4AB6223168E1002C9427 /* Info.plist */,
@@ -148,7 +157,10 @@
 			files = (
 				6AEE4AA12231688E002C9427 /* ViewController.swift in Sources */,
 				6A0EA8B8223172BB00F89CEB /* MultipeerService.swift in Sources */,
+				3E04E00022455D8400190130 /* NumberPad.swift in Sources */,
+				3E04E00222455DCA00190130 /* PadButton.swift in Sources */,
 				6AEE4A9F2231688E002C9427 /* AppDelegate.swift in Sources */,
+				3E04DFFE22455B9F00190130 /* inputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
