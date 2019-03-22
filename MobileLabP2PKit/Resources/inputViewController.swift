@@ -8,17 +8,27 @@
 
 import UIKit
 
-class inputViewController: UIViewController {
-
-    @IBOutlet weak var inputField: NumberPad!
+//change text protocal for child view (inputfield) to call
+protocol ChangeTextPtotocol {
+    func changeText(_: String)
+}
+class inputViewController: UIViewController,ChangeTextPtotocol {
+    
+    
+    @IBOutlet  var inputField: NumberPad!
+    @IBOutlet weak var inputs: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.inputField=NumberPad()
+        self.inputField.delegate = self
         print("input")
 
 //    inputField.backgroundColor = .black
         // Do any additional setup after loading the view.
     }
-    
+    func changeText(_ numbText:String) {
+        if numbText != nil {inputs.text = numbText}
+    }
 
     /*
     // MARK: - Navigation
@@ -29,5 +39,9 @@ class inputViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+//    func changeText(text:String?){
+//        if text != nil {inputs.text=text}
+//    }
+    
 
 }

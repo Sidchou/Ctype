@@ -188,6 +188,7 @@
                     </view>
                     <connections>
                         <outlet property="inputField" destination="u1z-ln-p2w" id="1uk-wK-N0m"/>
+                        <outlet property="inputs" destination="cyP-o3-Rum" id="5w1-Gi-Ef9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4n-rH-DRu" userLabel="First Responder" sceneMemberID="firstResponder"/>

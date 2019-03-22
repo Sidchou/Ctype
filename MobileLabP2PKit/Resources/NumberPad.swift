@@ -27,7 +27,7 @@ class NumberPad: UIView {
         return bounds.width * CGFloat(container.boarder)
     }
 
-    
+    var delegate: ChangeTextPtotocol?
     //    private var halfHight: CGFloat {
     //        return bounds.height / 2
     //    }
@@ -69,14 +69,27 @@ class NumberPad: UIView {
             }
             numberKeys.layer.cornerRadius = CGFloat(size/2)
             numberKeys.setTitle(String(index+1), for: UIControl.State.normal)
-            numberKeys.addTarget(self, action: Selector(("numberKeysPressed:")), for: UIControl.Event.touchUpInside)
+            numberKeys.addTarget(self, action: #selector(numberKeysPressed), for: UIControl.Event.touchUpInside)
             self.addSubview(numberKeys)
             index += 1
+//            print(numberKeys.titleLabel?.text)
         }
         
     }
-    
-    func numberKeysPressed(){}
+    var printText:String?
+    @objc func numberKeysPressed(sender:PadButton!){
+        var buttonKey = "\(sender.titleLabel?.text ?? "")"
+        
+        if printText != nil {
+
+            printText = "\(printText ?? "")\(buttonKey)"
+
+        } else {
+            printText = buttonKey
+        }
+        print("\(printText ?? "")")
+        self.delegate?.changeText("\(printText ?? "")")
+    }
     
 }
 
