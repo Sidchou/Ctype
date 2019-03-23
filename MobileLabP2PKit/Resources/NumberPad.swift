@@ -76,6 +76,9 @@ class NumberPad: UIView {
         }
         
     }
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+    //trying to call the function here!!!!!!!!!!!!!!!
     var printText:String?
     @objc func numberKeysPressed(sender:PadButton!){
         var buttonKey = "\(sender.titleLabel?.text ?? "")"

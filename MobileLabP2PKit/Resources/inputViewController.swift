@@ -26,6 +26,10 @@ class inputViewController: UIViewController,ChangeTextPtotocol {
 //    inputField.backgroundColor = .black
         // Do any additional setup after loading the view.
     }
+    
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+    //trying to run tis function!!!!!!!!!!!!!!!
     func changeText(_ numbText:String) {
         if numbText != nil {inputs.text = numbText}
     }
