@@ -23,10 +23,12 @@ class NumberPad: UIView {
     private var size: CGFloat {
         return bounds.width * CGFloat(container.size)
     }
+    
     private var boarder: CGFloat {
         return bounds.width * CGFloat(container.boarder)
     }
-
+    
+    
     var delegate: ChangeTextPtotocol?
     //    private var halfHight: CGFloat {
     //        return bounds.height / 2
@@ -35,15 +37,23 @@ class NumberPad: UIView {
     @IBInspectable var cols: Int = 4
     @IBInspectable var rows: Int = 4
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//    }
+//
+//
+//    // Only override draw() if you perform custom drawing.
+//    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
-        
+//
         //    func viewDidLoad(_ rect: CGRect) {
         print("numberPad")
         
         let offset = 2*(self.halfWidth-CGFloat(boarder))/(CGFloat(cols)-1)
         // Drawing code
+        var numberTitle = 1
+        let operaterTitle = ["+","-","×","÷"]
+        var operaterTitleIndex = 0
         var index = 0
         while index < 16 {
             //set x,y position
@@ -57,7 +67,6 @@ class NumberPad: UIView {
             yPos+=1
             yPos=yPos*offset-(CGFloat(size)/2)
             
-            
             print(xPos,yPos)
             //            yPos+=offsetY
             let numberKeys = PadButton(frame: CGRect(x: 0, y: 0, width: size, height: size))
@@ -68,7 +77,15 @@ class NumberPad: UIView {
                 numberKeys.isNumber = false
             }
             numberKeys.layer.cornerRadius = CGFloat(size/2)
-            numberKeys.setTitle(String(index+1), for: UIControl.State.normal)
+            numberKeys.titleLabel?.font = UIFont(name: "helvetica", size: 35)
+            if numberKeys.isNumber {
+            numberKeys.setTitle(String(numberTitle), for: UIControl.State.normal)
+                numberTitle+=1
+            } else {
+                numberKeys.setTitle(operaterTitle[operaterTitleIndex], for: UIControl.State.normal)
+                operaterTitleIndex+=1
+
+            }
             numberKeys.addTarget(self, action: #selector(numberKeysPressed), for: UIControl.Event.touchUpInside)
             self.addSubview(numberKeys)
             index += 1
@@ -76,7 +93,12 @@ class NumberPad: UIView {
         }
         
     }
+
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//    }
     
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
     //trying to call the function here!!!!!!!!!!!!!!!
     var printText:String?

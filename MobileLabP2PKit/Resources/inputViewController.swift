@@ -15,11 +15,11 @@ protocol ChangeTextPtotocol {
 class inputViewController: UIViewController,ChangeTextPtotocol {
     
     
-    @IBOutlet  var inputField: NumberPad!
+    @IBOutlet var inputField: NumberPad!
     @IBOutlet weak var inputs: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inputField=NumberPad()
+//        self.inputField=NumberPad()
         self.inputField.delegate = self
         print("input")
 
