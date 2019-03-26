@@ -9,12 +9,16 @@
 import UIKit
 
 //change text protocal for child view (inputfield) to call
-protocol ChangeTextPtotocol {
+protocol ChangeTextProtocol {
     func changeText(_: String)
+    func tempAns(_: String)
+    
 }
-class inputViewController: UIViewController,ChangeTextPtotocol {
+
+class inputViewController: UIViewController, ChangeTextProtocol {
     
     
+    @IBOutlet weak var tempAnswer: UILabel!
     @IBOutlet var inputField: NumberPad!
     @IBOutlet weak var inputs: UILabel!
     override func viewDidLoad() {
@@ -33,7 +37,9 @@ class inputViewController: UIViewController,ChangeTextPtotocol {
     func changeText(_ numbText:String) {
         if numbText != nil {inputs.text = numbText}
     }
-
+    func tempAns(_ ans:String){
+        if ans != nil {tempAnswer.text = ans}
+    }
     /*
     // MARK: - Navigation
 

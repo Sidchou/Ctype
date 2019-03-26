@@ -163,6 +163,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VH5-4C-EsM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="270.33333333333331"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBq-qL-tT1">
+                                        <rect key="frame" x="320" y="228" width="94" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1z-ln-p2w" customClass="NumberPad" customModule="MobileLabP2PKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="270.33333333333326" width="414" height="465.66666666666674"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,9 +183,11 @@
                                     <constraint firstAttribute="width" secondItem="u1z-ln-p2w" secondAttribute="height" multiplier="8:9" id="BLo-kn-tyA"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-o3-Rum">
-                                <rect key="frame" x="71" y="101" width="273" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-o3-Rum">
+                                <rect key="frame" x="50" y="110" width="314" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="vPt-ku-UEM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -180,15 +195,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="cyP-o3-Rum" firstAttribute="leading" secondItem="ONd-ho-qRg" secondAttribute="leading" constant="50" id="KFi-ic-VV9"/>
                             <constraint firstItem="u1z-ln-p2w" firstAttribute="trailing" secondItem="ONd-ho-qRg" secondAttribute="trailing" id="LHE-lF-Fr4"/>
+                            <constraint firstItem="cyP-o3-Rum" firstAttribute="centerY" secondItem="VH5-4C-EsM" secondAttribute="centerY" id="ZIJ-JU-Zh0"/>
+                            <constraint firstItem="ONd-ho-qRg" firstAttribute="trailing" secondItem="VH5-4C-EsM" secondAttribute="trailing" id="fd7-47-fdY"/>
                             <constraint firstItem="u1z-ln-p2w" firstAttribute="bottom" secondItem="jfw-wF-vkj" secondAttribute="bottom" id="gWc-Wu-IE2"/>
+                            <constraint firstItem="ONd-ho-qRg" firstAttribute="trailing" secondItem="cyP-o3-Rum" secondAttribute="trailing" constant="50" id="hnt-h0-Rp0"/>
+                            <constraint firstItem="VH5-4C-EsM" firstAttribute="leading" secondItem="ONd-ho-qRg" secondAttribute="leading" id="hyv-Jv-tHb"/>
+                            <constraint firstItem="cyP-o3-Rum" firstAttribute="centerX" secondItem="VH5-4C-EsM" secondAttribute="centerX" id="n9L-Uh-nUa"/>
                             <constraint firstItem="u1z-ln-p2w" firstAttribute="leading" secondItem="ONd-ho-qRg" secondAttribute="leading" id="tes-BF-t3G"/>
+                            <constraint firstItem="u1z-ln-p2w" firstAttribute="top" secondItem="VH5-4C-EsM" secondAttribute="bottom" id="u4M-tM-hCY"/>
+                            <constraint firstItem="VH5-4C-EsM" firstAttribute="top" secondItem="jfw-wF-vkj" secondAttribute="top" id="y0B-cR-vfK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ONd-ho-qRg"/>
                     </view>
                     <connections>
                         <outlet property="inputField" destination="u1z-ln-p2w" id="1uk-wK-N0m"/>
                         <outlet property="inputs" destination="cyP-o3-Rum" id="5w1-Gi-Ef9"/>
+                        <outlet property="tempAnswer" destination="sBq-qL-tT1" id="Gy7-fn-baL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4n-rH-DRu" userLabel="First Responder" sceneMemberID="firstResponder"/>
