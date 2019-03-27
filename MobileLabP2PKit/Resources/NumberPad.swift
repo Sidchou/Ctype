@@ -29,7 +29,7 @@ class NumberPad: UIView {
     }
     
     
-    var delegate: ChangeTextProtocol?
+     weak var delegate: ChangeTextProtocol?
     //    private var halfHight: CGFloat {
     //        return bounds.height / 2
     //    }
@@ -46,8 +46,7 @@ class NumberPad: UIView {
 //    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
 //
-        //    func viewDidLoad(_ rect: CGRect) {
-        print("numberPad")
+//        print("numberPad")
         
         let offset = 2*(self.halfWidth-CGFloat(boarder))/(CGFloat(cols)-1)
         // Drawing code
@@ -55,6 +54,7 @@ class NumberPad: UIView {
         let operaterTitle = ["+","-","×","÷"]
         var operaterTitleIndex = 0
         var index = 0
+        var lastRowIndex = 0
         while index < 16 {
             //set x,y position
             
@@ -67,29 +67,57 @@ class NumberPad: UIView {
             yPos+=1
             yPos=yPos*offset-(CGFloat(size)/2)
             
-//            print(xPos,yPos)
-            //            yPos+=offsetY
+            
             let numberKeys = PadButton(frame: CGRect(x: 0, y: 0, width: size, height: size))
             numberKeys.center = CGPoint(x:CGFloat(xPos), y:CGFloat(yPos))
-            //            numberKeys.fillColor = UIColor.gray
-            //            numberKeys.backgroundColor = UIColor.gray
+          
+            // 4th col
             if CGFloat(index).truncatingRemainder(dividingBy: 4)==3.0 {
-                numberKeys.isNumber = false
+                numberKeys.dataType = numberKeys.dataTypeOperation[1]
+            }else{
+                if CGFloat(index/4) > 2{
+                if CGFloat(index).truncatingRemainder(dividingBy: 4)==0.0 {
+                numberKeys.dataType = numberKeys.dataTypeOperation[2]
             }
+                if CGFloat(index).truncatingRemainder(dividingBy: 4)==2.0 {
+                    numberKeys.dataType = numberKeys.dataTypeOperation[3]
+                }
+            }}
+            
+            
+            
+            // styling button
             numberKeys.layer.cornerRadius = CGFloat(size/2)
+            //styling text
             numberKeys.titleLabel?.font = UIFont(name: "helvetica", size: 35)
             numberKeys.titleLabel?.textAlignment = NSTextAlignment.center
-            if numberKeys.isNumber {
-           if numberTitle < 10 { numberKeys.setTitle(String(numberTitle), for: UIControl.State.normal)
+            // change title
+            if numberKeys.dataType == "Number" {
+           if numberTitle < 10
+           // title for 1-9
+           {numberKeys.setTitle(String(numberTitle), for: UIControl.State.normal)
                 numberTitle+=1
            }else{
-            numberKeys.setTitle("0", for: UIControl.State.normal)
+            // title for last row
+            numberKeys.setTitle("0", for:
+                UIControl.State.normal)
+            lastRowIndex+=1
                 }
-            } else {
-                numberKeys.setTitle(operaterTitle[operaterTitleIndex], for: UIControl.State.normal)
+            } else if numberKeys.dataType == "operator" {
+               // tile for last col
+            numberKeys.setTitle(operaterTitle[operaterTitleIndex], for: UIControl.State.normal)
                 operaterTitleIndex+=1
+            }else if numberKeys.dataType == "cancel" {
+                // tile for last col
+                numberKeys.setTitle("C", for: UIControl.State.normal)
+            }else if numberKeys.dataType == "submit" {
+                // tile for last col
+                numberKeys.setTitle("S", for: UIControl.State.normal)
             }
+
+
             numberKeys.addTarget(self, action: #selector(numberKeysPressed), for: UIControl.Event.touchUpInside)
+            
             self.addSubview(numberKeys)
             index += 1
 //            print(numberKeys.titleLabel?.text)
@@ -100,26 +128,39 @@ class NumberPad: UIView {
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
 //    }
-    
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
     //trying to call the function here!!!!!!!!!!!!!!!
     var digitCount = 0
     var operationCount = 0
     var printText:String?
+    var maxChecker = true
     @objc func numberKeysPressed(sender:PadButton!){
         var elementsArray:[String]
         var operatorArray:[String]
         var buttonKey = "\(sender.titleLabel?.text ?? "")"
+        // cancel button
+        if sender.dataType == "cancel" {
+            digitCount = 0
+            operationCount = 0
+            printText = nil
+            self.delegate?.changeText("input")
+        // send button
+        } else if sender.dataType == "submit" {
+            self.delegate?.changeText("sent")
+        // input button
+        } else {
         //count digit
-        if sender.isNumber {
+        if sender.dataType == "Number" {
             digitCount+=1
             operationCount = 0
-        }else{
+        }else if sender.dataType == "operator"{
             digitCount = 0
             operationCount+=1
         }
-        //if less than 3, fire number
+            
+            if maxChecker == true {
+        //fire keys up to 2 numb or 1 oper
         if digitCount < 3 && operationCount < 2 {
         if printText != nil {
             //add key
@@ -133,17 +174,23 @@ class NumberPad: UIView {
         self.delegate?.changeText("\(printText ?? "")")
     }else{
     print("too many numbers or operation")
-        }
+                }}else{
+                print("too many stuffs")
+            }
+
+            
         elementsArray = printText?.components(separatedBy: ["+","-","×","÷"]) ?? []
         let digits = CharacterSet.decimalDigits
         operatorArray = printText?.components(separatedBy: digits) ?? []
         operatorArray = operatorArray.filter { $0 != "" }
         print("elements\(elementsArray)")
         print("operrrr\(operatorArray)")
+            
         // variable
         let didmath = doMath(e: elementsArray,o: operatorArray)
         print(didmath)
         self.delegate?.tempAns("\(didmath)")
+    }
     }
 }
 
@@ -199,7 +246,6 @@ func math(result:Int, e:[String], o:[String], do:String) -> (Int,[String],[Strin
             print("sub res\(r)")
         }
         }
-    
     return (r, el, op)
      
 }
@@ -219,4 +265,5 @@ func oConfig(o:[String], i:Int) -> [String] {
     print ("retuning\(op)")
 
     return op
+
 }

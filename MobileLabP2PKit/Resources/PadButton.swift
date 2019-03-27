@@ -16,9 +16,15 @@ class PadButton: UIButton {
     private var halfHight: CGFloat {
         return bounds.height / 2
     }
-    var numbColor: UIColor = UIColor.darkGray
-    var opColor: UIColor = UIColor.orange
+    let numbColor: UIColor = UIColor.darkGray
+    let opColor: UIColor = UIColor.orange
+    let cancelColor: UIColor = UIColor.red
+    let submitColor: UIColor = UIColor.cyan
     var isNumber: Bool = true
+    let dataTypeOperation : [String] = ["Number", "operator", "cancel", "submit"]
+    
+    var dataType: String = "Number"
+    
     
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -27,11 +33,17 @@ class PadButton: UIButton {
         // Drawing code
         //        self.layer.cornerRadius = 25
         self.clipsToBounds=true
-        if isNumber {
+        if dataType == "Number" {
             //            self.backgroundColor = numbColor
             self.layer.backgroundColor = numbColor.cgColor
-        } else {
+        } else if dataType ==  "operator"{
             self.layer.backgroundColor = opColor.cgColor
+        }else if dataType == "cancel"{
+            self.layer.backgroundColor = cancelColor.cgColor
+
+        } else if dataType == "submit"{
+            self.layer.backgroundColor = submitColor.cgColor
+
         }
     }
     

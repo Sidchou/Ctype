@@ -9,7 +9,7 @@
 import UIKit
 
 //change text protocal for child view (inputfield) to call
-protocol ChangeTextProtocol {
+protocol ChangeTextProtocol : class {
     func changeText(_: String)
     func tempAns(_: String)
     
